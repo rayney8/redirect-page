@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Перенаправление...</title>
+  <script>
+    function redirect() {
+      // Получаем параметр symbol из URL
+      const params = new URLSearchParams(window.location.search);
+      const symbol = params.get('symbol') || 'DEFAULT';
+      const ua = navigator.userAgent || "";
+      // Если устройство Android – используем Intent-ссылку, иначе – fallback URL
+      if (ua.indexOf("Android") !== -1) {
+        window.location.href = "intent://ru-RU/tradingbot/fgrid-create/" + symbol + "USDT#Intent;scheme=https;package=com.bybit.android;end";
+      } else {
+        window.location.href = "https://www.bybit.com/ru-RU/tradingbot/fgrid-create/" + symbol + "USDT";
+      }
+    }
+  </script>
+</head>
+<body onload="redirect()">
+  <p>Перенаправление...</p>
+</body>
+</html>
